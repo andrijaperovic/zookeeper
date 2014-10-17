@@ -89,7 +89,13 @@ Dir.chdir("#{HERE}/lib") do
     end
   end
 end
-$LIBS << " -lzookeeper_st_gem"
+operating_system = `uname -a`
+
+if operating_system.include?("amazon-xen")
+  $LIBS << " -lzookeeper_st_gem -lm"
+else
+  $LIBS << " -lzookeeper_st_gem"
+end
 
 have_func('rb_thread_blocking_region')
 
