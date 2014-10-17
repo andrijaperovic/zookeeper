@@ -89,9 +89,9 @@ Dir.chdir("#{HERE}/lib") do
     end
   end
 end
-operating_system = `uname -a`
+operating_system = `cat /etc/**release`
 
-if operating_system.include?("amazon-xen")
+if operating_system.include?("Gentoo")
   $LIBS << " -lzookeeper_st_gem -lm"
 else
   $LIBS << " -lzookeeper_st_gem"
